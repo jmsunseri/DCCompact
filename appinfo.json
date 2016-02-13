@@ -1,0 +1,83 @@
+{
+    "appKeys": {
+        "KEY_CONDITIONS": 1,
+        "KEY_TEMPERATURE": 0
+    },
+    "capabilities": [
+        "location"
+    ],
+    "companyName": "Daniel Cerezo",
+    "enableMultiJS": false,
+    "longName": "Compact Yellow",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/Sonyicon-02.png",
+                "menuIcon": true,
+                "name": "IMAGE_ICON",
+                "targetPlatforms": null,
+                "type": "png"
+            },
+            {
+                "file": "fonts/perfect-dos-vga.ttf",
+                "name": "FONT_WEATHER_25",
+                "targetPlatforms": null,
+                "type": "font"
+            },
+            {
+                "file": "fonts/perfect-dos-vga.ttf",
+                "name": "FONT_WEATHER_15",
+                "targetPlatforms": null,
+                "type": "font"
+            },
+            {
+                "file": "fonts/perfect-dos-vga.ttf",
+                "name": "FONT_WEATHER_19",
+                "targetPlatforms": null,
+                "type": "font"
+            },
+            {
+                "file": "images/sony.png",
+                "name": "IMAGE_BACKGROUND",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            },
+            {
+                "file": "fonts/Code 7x5.ttf",
+                "name": "FONT_PERFECT_DIS_10",
+                "targetPlatforms": null,
+                "type": "font"
+            },
+            {
+                "file": "fonts/FONT_PERFECT_DOS_20",
+                "name": "FONT_PERFECT_DOS_16",
+                "targetPlatforms": null,
+                "type": "font"
+            },
+            {
+                "file": "fonts/FONT_PERFECT_DOS_20",
+                "name": "FONT_PERFECT_DOS_18",
+                "targetPlatforms": null,
+                "type": "font"
+            },
+            {
+                "file": "fonts/FONT_PERFECT_DOS_20",
+                "name": "FONT_PERFECT_DOS_50",
+                "targetPlatforms": null,
+                "type": "font"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Compact",
+    "targetPlatforms": [
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "a19e6a34-1558-4d90-94a1-23cfe71c835d",
+    "versionLabel": "2.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
