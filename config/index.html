@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel='stylesheet' type='text/css' href='/bower_components/pebble-slate/dist/css/slate.min.css'>
+  <link rel='stylesheet' type='text/css' href='/css/style.css'>
+</head>
+<body>
+  <div class='item-container'>
+    <h1 class='title'>DC Compact<br>Configuration Page</h1>
+  </div>
+
+  <div class='item-container'>
+    <div class='item-container-content'>
+      <div class='item'>
+        Use this configuration page to choose the settings you would like
+        applied to this app.
+      </div>
+    </div>
+  </div>
+
+  <div class='item-container'>
+    <div class='item-container-header'>Customizability</div>
+    <div class='item-container-content'>
+        <label class='item'>
+        24-Hour Format
+        <input id='twentyFourHourFormatCheckbox' type='checkbox' class='item-toggle' checked>
+      </label>
+      <label class='item'>
+        Metric Units
+        <input id='metricUnitsCheckbox' type='checkbox' class='item-toggle' checked>
+      </label>
+      <label class="item">
+      Themes
+      <select id="themeSelectList" name="select-1" dir='rtl' class="item-select">
+        <option class="item-select-option" value="yellow-black" >Original Yellow</option>
+        <option class="item-select-option" vlaue="green-black">Forrest</option>
+        <option class="item-select-option" vlaue="red-black">Heat</option>
+        <option class="item-select-option" vlaue="custom">Custom</option>
+      </select>
+    </label>
+      <label class='item'>
+        Background Color
+        <input id='backgroundColorPicker' type='text' class='item-color item-color-sunny' value='#000000'>
+      </label>
+      <label class='item'>
+        Hour Color
+        <input id='hourColorPicker' type='text' class='item-color item-color-sunny' value='#000000'>
+      </label>
+      <label class='item'>
+        Minute Color
+        <input id='minuteColorPicker' type='text' class='item-color item-color-sunny' value='#000000'>
+      </label>
+      <label class='item'>
+        Frame Color
+        <input id='frameColorPicker' type='text' class='item-color item-color-sunny' value='#000000'>
+      </label>
+      <label class='item'>
+        Date Circle Background Color
+        <input id='dateCircleBackgroundColorPicker' type='text' class='item-color item-color-sunny' value='#000000'>
+      </label>
+      <label class='item'>
+        Date Circle Text Color
+        <input id='dateCircleTextColorPicker' type='text' class='item-color item-color-sunny' value='#000000'>
+      </label>
+      <label class='item'>
+        Weather Circle Background Color
+        <input id='weatherCircleBackgroundColorPicker' type='text' class='item-color item-color-sunny' value='#000000'>
+      </label>
+      <label class='item'>
+        Weather Circle Text Color
+        <input id='weatherCircleTextColorPicker' type='text' class='item-color item-color-sunny' value='#000000'>
+      </label>  
+      
+    </div>
+    <div class='item-container-footer'>
+      These settings only change on the watch after you click save.
+    </div>
+  </div>
+
+  <div class='item-container'>
+    <div class='button-container'>
+      <input id='submitButton' type='button' class='item-button' value='SUBMIT'>
+    </div>
+  </div>
+
+  <script src='/bower_components/pebble-slate/dist/js/slate.min.js'></script>
+  <script src='/js/main.js'></script>
+</body>
+</html>
