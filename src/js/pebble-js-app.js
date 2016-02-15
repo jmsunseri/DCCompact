@@ -87,13 +87,20 @@ Pebble.addEventListener('webviewclosed',
     
     
     if(configData.backgroundColor){
-        Pebble.sendAppMessage({
+        var object = {
             backgroundColor: parseInt(configData.backgroundColor, 16),
-            twentyFourHourFormat: configData.twentyFourHourFormat
+            twentyFourHourFormat: configData.twentyFourHourFormat,
+            hourColor: parseInt(configData.hourColor, 16),
+            metricUnits: configData.metricUnits,
+            minuteColor:parseInt(configData.minuteColor, 16),
+            dateTextColor:parseInt(configData.dateTextColor, 16),
+            tempTextColor:parseInt(configData.tempTextColor, 16),
+            conditionsColor:parseInt(configData.conditionsColor, 16)      
+        };
+        Pebble.sendAppMessage(object, function() {
+            console.log('Send successful! ' + JSON.stringify(object));
         }, function() {
-            console.log('Send successful!')
-        }, function() {
-            console.log('Send failed!')
+            console.log('Send failed!');
         })
     }
   }

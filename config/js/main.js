@@ -18,27 +18,29 @@ function loadOptions() {
     var $backgroundColorPicker = $('#backgroundColorPicker');
     var $twentyFourHourFormatCheckbox = $('#twentyFourHourFormatCheckbox');
     var $metricUnitsCheckbox = $('#metricUnitsCheckbox');
-    var $themeSelectList = $('#themeSelectList');
+    //var $themeSelectList = $('#themeSelectList');
     var $hourColorPicker = $('#hourColorPicker');
     var $minuteColorPicker = $('#minuteColorPicker');
-    var $frameColorPicker = $('#frameColorPicker');
-    var $dateCircleBackgroundColorPicker = $('#dateCircleBackgroundColorPicker');
-    var $dateCircleTextColorPicker = $('#dateCircleTextColorPicker');
-    var $weatherCircleBackgroundColorPicker = $('#weatherCircleBackgroundColorPicker');
-    var $weatherCircleTextColorPicker = $('#weatherCircleTextColorPicker');
+    //var $frameColorPicker = $('#frameColorPicker');
+    //var $dateCircleBackgroundColorPicker = $('#dateCircleBackgroundColorPicker');
+    var $dateTextColorPicker = $('#dateTextColorPicker');
+    //var $tempBackgroundColorPicker = $('#tempBackgroundColorPicker');
+    var $tempTextColorPicker = $('#tempTextColorPicker');
+    var $conditionsColorPicker = $('#conditionsColorPicker');
 
     if (localStorage.backgroundColor) {
         $backgroundColorPicker[0].value = localStorage.backgroundColor;
         $twentyFourHourFormatCheckbox[0].checked = localStorage.twentyFourHourFormat === 'true';
         $metricUnitsCheckbox[0].checked = localStorage.metricUnits === 'true';
-        $themeSelectList.value = localStorage.theme;
-        $hourColorPicker.value = localStorage.hourColor;
-        $minuteColorPicker.value = localStorage.minuteColor;
-        $frameColorPicker.value = localStorage.frameColor;
-        $dateCircleBackgroundColorPicker.value = localStorage.dateCircleBackgroundColor;
-        $dateCircleTextColorPicker.value = localStorage.dateCircleTextColor;
-        $weatherCircleBackgroundColorPicker.value = localStorage.weatherCircleBackgroundColor;
-        $weatherCircleTextColorPicker.value =  localStorage.weatherCircleTextColor; 
+        //$themeSelectList.value = localStorage.theme;
+        $hourColorPicker[0].value = localStorage.hourColor;
+        $minuteColorPicker[0].value = localStorage.minuteColor;
+        //$frameColorPicker.value = localStorage.frameColor;
+        //$dateCircleBackgroundColorPicker.value = localStorage.dateCircleBackgroundColor;
+        $dateTextColorPicker[0].value = localStorage.dateTextColor;
+        //$tempBackgroundColorPicker.value = localStorage.tempBackgroundColor;
+        $tempTextColorPicker[0].value =  localStorage.tempTextColor; 
+        $conditionsColorPicker[0].value = localStorage.conditionsColor;
     }
 }
 
@@ -46,42 +48,44 @@ function getAndStoreConfigData() {
   var $backgroundColorPicker = $('#backgroundColorPicker');
   var $twentyFourHourFormatCheckbox = $('#twentyFourHourFormatCheckbox');
   var $metricUnitsCheckbox = $('#metricUnitsCheckbox');
-  var $themeSelectList = $('#themeSelectList');
+  //var $themeSelectList = $('#themeSelectList');
   var $hourColorPicker = $('#hourColorPicker');
   var $minuteColorPicker = $('#minuteColorPicker');
-  var $frameColorPicker = $('#frameColorPicker');
-  var $dateCircleBackgroundColorPicker = $('#dateCircleBackgroundColorPicker');
-  var $dateCircleTextColorPicker = $('#dateCircleTextColorPicker');
-  var $weatherCircleBackgroundColorPicker = $('#weatherCircleBackgroundColorPicker');
-  var $weatherCircleTextColorPicker = $('#weatherCircleTextColorPicker');
-  
+  //var $frameColorPicker = $('#frameColorPicker');
+  //var $dateCircleBackgroundColorPicker = $('#dateCircleBackgroundColorPicker');
+  var $dateTextColorPicker = $('#dateTextColorPicker');
+  //var $tempBackgroundColorPicker = $('#tempBackgroundColorPicker');
+  var $tempTextColorPicker = $('#tempTextColorPicker');
+  var $conditionsColorPicker = $('#conditionsColorPicker');
   
   
   var options = {
     backgroundColor: $backgroundColorPicker.val(),
-    twentyFourHourFormat: $twentyFourHourFormatCheckbox[0].checked
-    //metricUnits: $metricUnitsCheckbox[0].checked,
+    twentyFourHourFormat: $twentyFourHourFormatCheckbox[0].checked,
+    metricUnits: $metricUnitsCheckbox[0].checked,
     //theme: $themeSelectList.val(),
-    //hourColor: $hourColorPicker.val(),
-    //minuteColor: $minuteColorPicker.val(),
+    hourColor: $hourColorPicker.val(),
+    minuteColor: $minuteColorPicker.val(),
     //frameColor: $frameColorPicker.val(),
     //dateCircleBackgroundColor: $dateCircleBackgroundColorPicker.val(),
-    //dateCircleTextColor: $dateCircleTextColorPicker.val(),
-    //weatherCircleBackgroundColor: $weatherCircleBackgroundColorPicker.val(),
-    //weatherCircleTextColor: $weatherCircleTextColorPicker.val()  
+    dateTextColor: $dateTextColorPicker.val(),
+    //tempBackgroundColor: $tempBackgroundColorPicker.val(),
+    tempTextColor: $tempTextColorPicker.val(),
+    conditionsColor: $conditionsColorPicker.val()   
   };
 
   localStorage.backgroundColor = options.backgroundColor;
   localStorage.twentyFourHourFormat = options.twentyFourHourFormat;
-  //localStorage.metricUnits = options.metricUnits;
+  localStorage.metricUnits = options.metricUnits;
   //localStorage.theme = options.theme;
-  //localStorage.hourColor = options.hourColor;
-  //localStorage.minuteColor = options.minuteColor;
+  localStorage.hourColor = options.hourColor;
+  localStorage.minuteColor = options.minuteColor;
   //localStorage.frameColor = options.frameColor;
   //localStorage.dateCircleBackgroundColor = options.dateCircleBackgroundColor;
-  //localStorage.dateCircleTextColor = options.dateCircleTextColor;
-  //localStorage.weatherCircleBackgroundColor = options.weatherCircleBackgroundColor;
-  //localStorage.weatherCircleTextColor = options.weatherCircleTextColor;
+  localStorage.dateTextColor = options.dateTextColor;
+  //localStorage.tempBackgroundColor = options.tempBackgroundColor;
+  localStorage.tempTextColor = options.tempTextColor;
+  localStorage.conditionsColor = options.conditionsColor;
 
   console.log('Got options: ' + JSON.stringify(options));
   return options;

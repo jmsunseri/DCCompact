@@ -3,7 +3,13 @@
         "KEY_CONDITIONS": 1,
         "KEY_TEMPERATURE": 0,
         "backgroundColor": 2,
-        "twentyFourHourFormat": 3
+        "twentyFourHourFormat": 3,
+        "hourColor": 4,
+        "metricUnits":5,
+        "minuteColor":6,
+        "dateTextColor":7,
+        "tempTextColor":8,
+        "conditionsColor":9
     },
     "capabilities": [
         "location"
