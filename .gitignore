@@ -7,6 +7,5 @@ build/*
 
 config/bower_components/pebble-slate/docs
 
-config/bower_components/*
 
 .lock-waf_darwin_build
