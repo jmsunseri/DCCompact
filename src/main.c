@@ -81,9 +81,6 @@ static void update_time() {
     strftime(s_buffer_hour, sizeof(s_buffer_hour), "%I", tick_time);
   }
   
-  
-  //strftime(s_buffer_hour, sizeof(s_buffer_hour), clock_is_24h_style() ?
-  //                                        "%H" : "%I", tick_time);
   strftime(s_buffer_minute, sizeof(s_buffer_minute), clock_is_24h_style() ?
                                           "%M" : "%M", tick_time);
   
@@ -95,11 +92,30 @@ static void update_time() {
   text_layer_set_text(s_date_layer, date_buffer);
 }
 
+static void update_temperature() {
+  static char temperature_buffer[8];
+  static char temp_layer_buffer[32];
+  
+  if(metric_units) {
+    APP_LOG(APP_LOG_LEVEL_INFO, "Using metric units");
+    snprintf(temperature_buffer, sizeof(temperature_buffer), "%d", temp_in_c);
+  }
+  else {
+    APP_LOG(APP_LOG_LEVEL_INFO, "Using imperial units");
+    snprintf(temperature_buffer, sizeof(temperature_buffer), "%d", (int)(temp_in_c *1.8 + 32));
+  }
+  
+  snprintf(temp_layer_buffer, sizeof(temp_layer_buffer), "%s", temperature_buffer);
+  text_layer_set_text(s_temp_layer, temp_layer_buffer);
+}
+
+
+
+
 static void inbox_received_callback(DictionaryIterator *iterator, void *context) {
   // Store incoming information
-  static char temperature_buffer[8];
-  static char weather_layer_buffer[32];
-  static char weather_layer2_buffer[32];
+  
+  static char conditions_layer_buffer[32];
   static char conditions_buffer[32];
   
   //options from configuration
@@ -119,6 +135,8 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   Tuple *metric_units_tuple = dict_find(iterator, KEY_METRIC_UNITS);
 
   if(background_color_tuple){
+    APP_LOG(APP_LOG_LEVEL_INFO, "Background color tuple detected!  Must be an update from the config page.");
+    
     int background_color = background_color_tuple->value->int32;
     persist_write_int(KEY_BACKGROUND_COLOR, background_color);
     
@@ -148,15 +166,19 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   }
 
   if(metric_units_tuple){
+    APP_LOG(APP_LOG_LEVEL_INFO, "Metric unit tuple detected");
+    
     if(metric_units != metric_units_tuple->value->int8){
-      if(metric_units) {
-        snprintf(temperature_buffer, sizeof(temperature_buffer), "%d", (int)(temp_in_c*1.8+32));
-      }
-      else {
-        snprintf(temperature_buffer, sizeof(temperature_buffer), "%d", (int)((temp_in_c-32)/1.8));
-      }
+      APP_LOG(APP_LOG_LEVEL_INFO, "Change in temp configuration detected");
+      metric_units = metric_units_tuple->value->int8;    
+      persist_write_int(KEY_METRIC_UNITS, metric_units);
+      
+      update_temperature();
     }
-    persist_write_int(KEY_METRIC_UNITS, metric_units);
+    else {
+      APP_LOG(APP_LOG_LEVEL_INFO, "No change in temp configuration detected");
+    }
+    
   }
   
 
@@ -164,21 +186,25 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   if(temp_tuple && conditions_tuple) {
     temp_in_c = (int)temp_tuple->value->int32;
     
-    if(metric_units){
-      snprintf(temperature_buffer, sizeof(temperature_buffer), "%d", temp_in_c);
-    }
-    else {
-      snprintf(temperature_buffer, sizeof(temperature_buffer), "%d", (int)((temp_in_c *1.8 + 32)   ));
-    }
+    update_temperature();
+    
+    //if(metric_units){
+    //  APP_LOG(APP_LOG_LEVEL_INFO, "Using metric units");
+    //  snprintf(temperature_buffer, sizeof(temperature_buffer), "%d", temp_in_c);
+    //}
+    //else {
+    //  APP_LOG(APP_LOG_LEVEL_INFO, "Using imperial units");
+    //  snprintf(temperature_buffer, sizeof(temperature_buffer), "%d", (int)((temp_in_c *1.8 + 32)   ));
+    //}
     
     
     snprintf(conditions_buffer, sizeof(conditions_buffer), "%s", conditions_tuple->value->cstring);
  
     // Assemble full string and display
-    snprintf(weather_layer_buffer, sizeof(weather_layer_buffer), "%s", temperature_buffer);
-    text_layer_set_text(s_temp_layer, weather_layer_buffer);
-    snprintf(weather_layer2_buffer, sizeof(weather_layer2_buffer), "%s", conditions_buffer);
-    text_layer_set_text(s_conditions_layer, weather_layer2_buffer);
+    //snprintf(temp_layer_buffer, sizeof(temp_layer_buffer), "%s", temperature_buffer);
+    //text_layer_set_text(s_temp_layer, temp_layer_buffer);
+    snprintf(conditions_layer_buffer, sizeof(conditions_layer_buffer), "%s", conditions_buffer);
+    text_layer_set_text(s_conditions_layer, conditions_layer_buffer);
   }
 }
 
