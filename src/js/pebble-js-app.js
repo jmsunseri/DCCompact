@@ -71,7 +71,9 @@ Pebble.addEventListener('ready',
 
 Pebble.addEventListener('showConfiguration', 
   function(e) {
-    var url = 'http://localhost:8080';
+    //var url = 'http://localhost:8080';
+    var url = 'http://jmsunseri.github.io/DCCompact/config/'
+    
     
     console.log("Showing configuration page");
     
