@@ -5,8 +5,6 @@ build/.lock-waf_darwin_build
 
 build/*
 
-config/bower_components/pebble-slate/*.*
-
 config/bower_components/pebble-slate/docs
 
 config/bower_components/*
